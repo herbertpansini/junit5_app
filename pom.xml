@@ -15,6 +15,8 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<lombok.version>1.18.24</lombok.version>
+		<junit.version>5.8.2</junit.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -27,6 +29,18 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -35,7 +49,21 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${java.version}</source> <!-- depending on your project -->
+						<target>${java.version}</target> <!-- depending on your project -->
+						<annotationProcessorPaths>
+							<path>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok</artifactId>
+								<version>${lombok.version}</version>
+							</path>
+						</annotationProcessorPaths>
+					</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>
