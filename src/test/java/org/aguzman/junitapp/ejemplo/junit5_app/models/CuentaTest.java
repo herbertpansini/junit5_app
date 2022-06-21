@@ -1,11 +1,14 @@
 package org.aguzman.junitapp.ejemplo.junit5_app.models;
 
 import org.aguzman.junitapp.ejemplo.junit5_app.exceptions.DineroInsuficienteException;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.math.BigDecimal;
 
@@ -24,6 +27,16 @@ class CuentaTest {
     @AfterEach
     void tearDown() {
         System.out.println("Finalizando el metodo de prueba.");
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("Inicializando el test");
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println("Finalizando el test");
     }
 
     @Test
