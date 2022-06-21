@@ -15,6 +15,12 @@ import java.math.BigDecimal;
 public class Cuenta {
     private String persona;
     private BigDecimal saldo;
+    private Banco banco;
+
+    public Cuenta(String persona, BigDecimal saldo) {
+        this.persona = persona;
+        this.saldo = saldo;
+    }
 
     public void debito(BigDecimal monto) {
         BigDecimal nuevoSaldo = this.saldo.subtract(monto);
