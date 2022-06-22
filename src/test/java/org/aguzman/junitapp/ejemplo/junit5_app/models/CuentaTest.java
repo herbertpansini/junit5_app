@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
@@ -266,5 +268,17 @@ class CuentaTest {
         });
         assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) < 0);
         assertTrue(cuenta.getSaldo().compareTo(BigDecimal.ZERO) > 0);
+    }
+
+    @RepeatedTest(value = 5, name = "{displayName} - Repetición numero {currentRepetition} de {totalRepetitions}")
+    @DisplayName("Probando debito cuenta repetir!")
+    void testDebitoCuentaRepetir(RepetitionInfo info) {
+        if (info.getCurrentRepetition() == 3) {
+            System.out.println("estamos en repeticion " + info.getCurrentRepetition());
+        }
+        cuenta.debito(new BigDecimal(100));
+        assertNotNull(cuenta.getSaldo());
+        assertEquals(900, cuenta.getSaldo().intValue());
+        assertEquals("900.12345", cuenta.getSaldo().toPlainString());
     }
 }
